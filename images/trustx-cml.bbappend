@@ -33,6 +33,7 @@ PACKAGE_INSTALL_append = "\
         lxcfs \
         pv \
         uid-wrapper \
+	tegra-init \
 "
 
 PACKAGE_INSTALL_append = "\

@@ -1,0 +1,28 @@
+From 3359fa43725e9c961ee66672dc30c307697f5fa3 Mon Sep 17 00:00:00 2001
+From: protsenko <protsenko@epyc-02.aisec.fraunhofer.de>
+Date: Fri, 28 May 2021 15:16:33 +0200
+Subject: [PATCH] disabled metacopy for mounting overlayfs, since it is not
+ supported by 4.9 kernel
+
+---
+ daemon/c_vol.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/daemon/c_vol.c b/daemon/c_vol.c
+index 0a8a5e4..3e8f606 100644
+--- a/daemon/c_vol.c
++++ b/daemon/c_vol.c
+@@ -505,11 +505,11 @@ c_vol_mount_overlay(const char *target_dir, const char *upper_fstype, const char
+ 	char *cwd = get_current_dir_name();
+ 	char *overlayfs_options;
+ 	if (chdir(overlayfs_mount_dir)) {
+-		overlayfs_options = mem_printf("lowerdir=%s,upperdir=%s,workdir=%s,metacopy=on",
++		overlayfs_options = mem_printf("lowerdir=%s,upperdir=%s,workdir=%s",
+ 					       lower_dir, upper_dir, work_dir);
+ 	} else {
+ 		overlayfs_options =
+-			mem_strdup("lowerdir=lower,upperdir=upper,workdir=work,metacopy=on");
++			mem_strdup("lowerdir=lower,upperdir=upper,workdir=work");
+ 		TRACE("old_wdir: %s, mount_cwd: %s, overlay_options: %s ", cwd, overlayfs_mount_dir,
+ 		      overlayfs_options);
+ 	}

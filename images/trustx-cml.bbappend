@@ -1,11 +1,11 @@
-#inherit trustmetegra
+require recipes-core/images/core-image-minimal.bb
+inherit trustmetegra
 
-
-IMAGE_FSTYPES = "tegraflash"
+IMAGE_FSTYPES = "tegraflash trustmetegra"
 DEPENDS += " bash-native bash "
 
 
-PACKAGE_INSTALL = "\
+PACKAGE_INSTALL_append = "\
         ${VIRTUAL-RUNTIME_base-utils} \
         udev \
         base-passwd \
@@ -35,7 +35,7 @@ PACKAGE_INSTALL = "\
         uid-wrapper \
 "
 
-PACKAGE_INSTALL += "\
+PACKAGE_INSTALL_append = "\
         openssl-bin \
         gptfdisk \
         parted \

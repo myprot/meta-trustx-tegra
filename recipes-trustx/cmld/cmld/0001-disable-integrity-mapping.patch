@@ -1,0 +1,31 @@
+From 366b4cf2a613f7fe91d4be75e5fa4616d83d9a88 Mon Sep 17 00:00:00 2001
+From: protsenko <protsenko@epyc-02.aisec.fraunhofer.de>
+Date: Tue, 1 Jun 2021 19:33:48 +0200
+Subject: [PATCH] disable integrity mapping
+
+---
+ common/cryptfs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/common/cryptfs.c b/common/cryptfs.c
+index 23eb0f6..b5fb0b3 100644
+--- a/common/cryptfs.c
++++ b/common/cryptfs.c
+@@ -582,7 +582,7 @@ cryptfs_setup_volume_integrity_new(const char *label, const char *real_blkdev,
+ 		DEBUG("Successfully created device node");
+ 	}
+ 
+-	if (create_crypto_blk_dev(integrity_dev, key, label, fs_size, true) < 0) {
++	if (create_crypto_blk_dev(integrity_dev, key, label, fs_size, false) < 0) {
+ 		ERROR("Could not create crypto block device");
+ 		return NULL;
+ 	}
+@@ -646,7 +646,7 @@ cryptfs_setup_volume_new(const char *label, const char *real_blkdev, const char
+ 		DEBUG("Crypto blk device size: %lu", fs_size);
+ 	}
+ 
+-	if (meta_blkdev)
++	if (meta_blkdev && false)
+ 		return cryptfs_setup_volume_integrity_new(label, real_blkdev, meta_blkdev, key,
+ 							  fs_size);
+ 

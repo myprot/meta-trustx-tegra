@@ -4,6 +4,7 @@ inherit trustmetegra
 IMAGE_FSTYPES = "tegraflash trustmetegra"
 DEPENDS += " bash-native bash "
 
+CORE_IMAGE_EXTRA_INSTALL += " kernel-module-nvgpu "
 
 PACKAGE_INSTALL_append = "\
         ${VIRTUAL-RUNTIME_base-utils} \

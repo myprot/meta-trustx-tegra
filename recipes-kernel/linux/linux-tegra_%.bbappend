@@ -1,9 +1,9 @@
 SRC_URI += "file://trustx.cfg \
 	"
 
-L4T_VERSION = "l4t-r32.5"
+L4T_VERSION = "l4t-r32.6"
 SRCBRANCH = "oe4t-patches-${L4T_VERSION}"
-SRCREV = "a3633e2e1cf4c7309a88303f06ee4eb20188c716"
+SRCREV = "3b1a82dc339456b28fc75d4c1428d4ec3b6b9d95"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
